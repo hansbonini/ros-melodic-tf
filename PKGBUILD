@@ -56,6 +56,11 @@ build() {
 	source /usr/share/ros-build-tools/clear-ros-env.sh
 	[ -f /opt/ros/melodic/setup.bash ] && source /opt/ros/melodic/setup.bash
 
+	# Fix boost_signals error
+        cd ${_dir}
+        rm -rf CMakeLists.txt
+        wget https://raw.githubusercontent.com/ros/geometry/melodic-devel/tf/CMakeLists.txt
+
 	# Create the build directory.
 	[ -d ${srcdir}/build ] || mkdir ${srcdir}/build
 	cd ${srcdir}/build
